@@ -18,9 +18,13 @@ import http from 'node:http'
 // DELETE => Deletar um recurso do backend
 
 // EXEMPLO: GET /Users -> buscando usuarios no backend
-            // POST /Users -> criando usuarios no backend
+         // POST /Users -> criando usuarios no backend
 
-            //Cabeçalhos
+// Stateful - Stateless
+
+// JSON - JavaScript Object Notation
+
+
 
 
 
