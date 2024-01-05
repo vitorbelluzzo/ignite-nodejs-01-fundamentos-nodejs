@@ -24,8 +24,12 @@ import http from 'node:http'
 
 // JSON - JavaScript Object Notation
 
-
-
+//HTTP Status Code
+// Respostas Informativas (100 – 199)
+// Respostas bem-sucedidas (200 – 299)
+// Mensagens de redirecionamento (300 – 399)
+// Respostas de erro do cliente (400 – 499)
+// Respostas de erro do servidor (500 – 599)
 
 
 const users = []
@@ -37,7 +41,8 @@ const server = http.createServer ((request, response) => {
 
   if (method === 'GET' && url === '/users') {
 
-    return response.setHeader('Content-type', 'application/json').end(JSON.stringify(users))
+    return response.setHeader('Content-type', 'application/json')
+    .end(JSON.stringify(users))
   }
 
   if (method === 'POST' && url === '/users') {
@@ -47,11 +52,11 @@ const server = http.createServer ((request, response) => {
         email: 'vitor@exemplo.com',
       })
 
-    return response.end('Criação de usuário')
+    return response.writeHead(201).end()
   }
 
 
-  return response.end()
+  return response.writeHead(404).end('Not found')
 
 })
 
