@@ -20,17 +20,21 @@ import http from 'node:http'
 // EXEMPLO: GET /Users -> buscando usuarios no backend
             // POST /Users -> criando usuarios no backend
 
+<<<<<<< HEAD
             //Cabeçalhos
 
 
 
 const users = []
+=======
+>>>>>>> origin/update
 
 const server = http.createServer ((request, response) => {
   const { method, url } = request
 
   if (method === 'GET' && url === '/users') {
     // early return
+<<<<<<< HEAD
     return response.end(JSON.stringify(users))
   }
 
@@ -41,6 +45,13 @@ const server = http.createServer ((request, response) => {
         email: 'vitor@exemplo.com',
       })
 
+=======
+    return response.end('Listagem de usuários')
+  }
+
+  if (method === 'POST' && url === '/users') {
+    // early return
+>>>>>>> origin/update
     return response.end('Criação de usuário')
   }
 
