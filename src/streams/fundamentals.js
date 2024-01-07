@@ -7,9 +7,9 @@
 //readable streams / writable streams
 
 // streams ->
-process.stdin.pipe(process.stdout) // entrada e saida no terminal
+// process.stdin.pipe(process.stdout) // entrada e saida no terminal
 
-import { Readable } from 'node:stream'
+import { Readable, Writable, Transform } from 'node:stream'
 
 class OneToHundredStream extends Readable {
   //toda stream readable tem o metodo "_read"
@@ -30,4 +30,27 @@ class OneToHundredStream extends Readable {
   }
 }
 
-new OneToHundredStream().pipe(process.stdout)
+class InverseNumberStream extends Transform {
+  _transform(chunk, encoding, callback) {
+    const Transformed = Number(chunk.toString()) * -1
+
+    callback(null, Buffer.from(String(Transformed)))
+    
+  }
+}
+
+class MultiplyByTenStream extends Writable {
+    //toda stream writable tem o metodo "_write"
+    _write(chunk, encoding, callback) {
+      console.log(Number(chunk.toString()) * 10)
+      callback()
+    }
+
+ 
+
+}
+
+
+new OneToHundredStream()
+.pipe(new InverseNumberStream())
+.pipe(new MultiplyByTenStream())
