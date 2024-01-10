@@ -32,9 +32,9 @@ class OneToHundredStream extends Readable {
 
 class InverseNumberStream extends Transform {
   _transform(chunk, encoding, callback) {
-    const Transformed = Number(chunk.toString()) * -1
+    const transformed = Number(chunk.toString()) * -1
 
-    callback(null, Buffer.from(String(Transformed)))
+    callback(null, Buffer.from(String(transformed)))
     
   }
 }
