@@ -3,3 +3,4 @@ export function buildRoutePath(path) {
 
     console.log(Array.from(path.matchAll(routeParametersRegex)));    
 }
+
