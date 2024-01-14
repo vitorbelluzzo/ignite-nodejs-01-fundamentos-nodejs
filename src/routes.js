@@ -34,7 +34,7 @@ export const routes = [
     },
     {
         method: 'DELETE',
-        path: buildRoutePath('/users:id'),   // : -> dois pontos significa que a rota recebera um parametro dinamico
+        path: buildRoutePath('/users/:id'),   // : -> dois pontos significa que a rota recebera um parametro dinamico
         handler: (request, response) => {
             return response.end()
         }
