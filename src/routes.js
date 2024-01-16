@@ -1,6 +1,5 @@
-import { randomUUID  } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import { Database } from "./database.js"
-import { request } from 'node:http';
 import { buildRoutePath } from './utils/build-route-path.js';
 
 const database = new Database()
@@ -33,10 +32,28 @@ export const routes = [
         }
     },
     {
+        method: 'PUT',
+        path: buildRoutePath('/users/:id'),   // : -> dois pontos significa que a rota recebera um parametro dinamico
+        handler: (request, response) => {
+            const { id } = request.params
+            const { name, email } = request.body
+
+            database.update('users', id, {
+                name,
+                email,
+            })
+
+            return response.writeHead(204).end()
+        },
+    },
+    {
         method: 'DELETE',
         path: buildRoutePath('/users/:id'),   // : -> dois pontos significa que a rota recebera um parametro dinamico
         handler: (request, response) => {
-            return response.end()
-        }
+           const { id } = request.params
+
+           database.delete('users', id)
+          return response.writeHead(204).end()
+        },
     }
 ]

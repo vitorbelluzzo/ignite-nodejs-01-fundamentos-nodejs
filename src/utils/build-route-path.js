@@ -4,6 +4,6 @@ export function buildRoutePath(path) {
 
     const pathRegex = new RegExp(`^${pathWithParams}`)
 
-    return pathRegex
+    return pathRegex 
 }
 
